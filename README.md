@@ -3,7 +3,8 @@
 Windows 桌面悬浮歌词。通过系统媒体接口（GSMTC）读播放进度，歌词来自 [LRCLIB](https://lrclib.net)，显示在一个透明置顶的小窗口里。主要对着 Spotify Desktop 用，任何支持系统媒体会话的播放器都能驱动。
 
 Python 3.12 + PySide6 + winrt，无 Spotify API Key，不采集任何数据。
-<img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/7e9fe3f6-939e-4b7f-b3ed-785d4b550e4f" />
+<img width="1920" height="1030" alt="image" src="https://github.com/user-attachments/assets/bd70aeca-10df-4418-9c59-4488d99954bf" />
+
 
 ## 功能
 
