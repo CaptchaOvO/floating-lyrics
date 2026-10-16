@@ -209,6 +209,15 @@ def main() -> int:
     check("磁盘缓存命中免网络(OkSong)", got and "OkSong" not in calls,
           f"calls={calls} lines={len(controller._lines)}")
 
+    # ---- 5c) 居中锚定：歌词变短后窗口宽度收缩，但中心点不漂移 ----
+    from dataclasses import replace as dc_replace
+
+    center_before = overlay.geometry().center()
+    overlay.set_lyrics([dc_replace(controller._lines[0], text="短")], 0)
+    center_after = overlay.geometry().center()
+    check("居中锚定(歌词变短中心不漂移)", center_before == center_after,
+          f"{center_before} -> {center_after}")
+
     # ---- 6) 托盘退出（窗口可见状态下触发 QAction，事件循环应立即自行退出）----
     from PySide6.QtCore import QTimer
 

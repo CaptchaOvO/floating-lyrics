@@ -285,10 +285,11 @@ class OverlayWindow(QWidget):
     # ---------------------------------------------------------- 尺寸/原生样式
 
     def _resize_to_content(self) -> None:
+        """按内容调整尺寸，保持窗口中心不动（歌词长短变化时视觉中心不漂移）。"""
         items = self._draw_items()
         if not items:
             # 最小占位尺寸，避免 0 尺寸窗口问题
-            self.resize(PADDING_X * 2, PADDING_Y * 2 + 24)
+            self._resize_keep_center(PADDING_X * 2, PADDING_Y * 2 + 24)
             return
         width = 0.0
         height = float(PADDING_Y)
@@ -297,8 +298,16 @@ class OverlayWindow(QWidget):
             width = max(width, metrics.horizontalAdvance(text))
             height += metrics.height() * self._config.line_spacing
         height += PADDING_Y
-        self.resize(int(width + PADDING_X * 2 + self._config.outline_width + 4),
-                    int(height + self._config.shadow_blur))
+        self._resize_keep_center(int(width + PADDING_X * 2 + self._config.outline_width + 4),
+                                 int(height + self._config.shadow_blur))
+
+    def _resize_keep_center(self, width: int, height: int) -> None:
+        """resize 后把窗口中心移回原位置：锚定歌词中心而不是左上角。"""
+        center = self.geometry().center()
+        self.resize(width, height)
+        geo = self.geometry()
+        geo.moveCenter(center)
+        self.setGeometry(geo)
 
     def _apply_native_styles(self) -> None:
         try:
