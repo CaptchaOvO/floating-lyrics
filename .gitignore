@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# 虚拟环境
+.venv/
+
+# PyInstaller 中间产物与成品（用 FloatingLyrics.spec 重新构建）
+build/
+dist/
+
+# 运行时生成
+logs/
+
+# 手工打包的分享压缩包
+*.zip
+
+# 系统与编辑器
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/

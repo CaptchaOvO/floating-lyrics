@@ -1,0 +1,4 @@
+PySide6>=6.6
+requests>=2.31
+# GSMTC 媒体会话读取；winrt 包只提供到 Python 3.12 的 wheel（3.13+ 无法安装）
+winrt-Windows.Media.Control>=2.0; python_version < "3.13" and sys_platform == "win32"
